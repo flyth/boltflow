@@ -43,8 +43,8 @@ agent, Easy-Switch just behaves stock (that device only).
 
 `go build` — cgo is required (hidapi). On Linux install `libudev-dev` first;
 at runtime the hidraw device needs permissions (udev rule or root). CI builds
-macOS (arm64/amd64/universal) and Linux amd64 on push; tagging `v*` attaches
-the binaries to a GitHub release.
+macOS (arm64/amd64/universal), Linux amd64 and Windows amd64 on push; tagging
+`v*` attaches the binaries to a GitHub release.
 
 ## Protocol notes
 

@@ -44,9 +44,27 @@ jobs:
           name: boltflow-linux
           path: boltflow-linux-amd64
 
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Build
+        run: go build -o boltflow-windows-amd64.exe .
+        env:
+          CGO_ENABLED: "1"
+      - name: Vet
+        run: go vet ./...
+      - uses: actions/upload-artifact@v4
+        with:
+          name: boltflow-windows
+          path: boltflow-windows-amd64.exe
+
   release:
     if: startsWith(github.ref, 'refs/tags/v')
-    needs: [macos, linux]
+    needs: [macos, linux, windows]
     runs-on: ubuntu-latest
     permissions:
       contents: write
